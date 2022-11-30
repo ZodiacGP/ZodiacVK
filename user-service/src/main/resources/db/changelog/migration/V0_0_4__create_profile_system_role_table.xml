@@ -1,0 +1,20 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="create-profile-system-role-table" author="zodiach3">
+        <createTable tableName="profile_system_role">
+            <column name="profile_id" type="char(36)">
+                <constraints foreignKeyName="fk_profile_profile_system_role"
+                             references="profile(id)"
+                             nullable="false"/>
+            </column>
+            <column name="system_role_id" type="char(36)">
+                <constraints foreignKeyName="fk_system_role_profile_system_role"
+                             references="system_role(id)"
+                             nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

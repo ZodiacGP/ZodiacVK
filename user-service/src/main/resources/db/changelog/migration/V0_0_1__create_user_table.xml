@@ -1,0 +1,20 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="create-user-table" author="zodiach3">
+        <createTable tableName="user">
+            <column name="id" type="char(36)" defaultValue="${u_id}">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="username" type="varchar(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="varchar(550)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="profile_id" type="char(36)"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

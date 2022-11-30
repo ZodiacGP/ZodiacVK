@@ -1,0 +1,31 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="create-profile-table" author="zodiach3">
+        <createTable tableName="profile">
+            <column name="id" type="char(36)" defaultValue="${u_id}">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="status" type="varchar(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="char(36)"/>
+            <column name="profile_type" type="char(32)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-user-profile-constraint" author="zodiach3">
+        <addForeignKeyConstraint baseTableName="user"
+                                 baseColumnNames="profile_id"
+                                 constraintName="fk_profile_user"
+                                 referencedTableName="profile"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="profile"
+                                 baseColumnNames="user_id"
+                                 constraintName="fk_user_profile"
+                                 referencedTableName="user"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

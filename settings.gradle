@@ -1,0 +1,7 @@
+rootProject.name = 'ZodiacVK'
+
+include 'user-service'
+include 'dependencies:error-handler'
+include 'dependencies:database'
+include 'dependencies:security'
+include 'dependencies:common'

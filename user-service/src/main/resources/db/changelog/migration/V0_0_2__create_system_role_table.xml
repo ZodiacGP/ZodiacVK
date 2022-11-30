@@ -1,0 +1,27 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="create-system-role-table" author="zodiach3">
+        <createTable tableName="system_role">
+            <column name="id" type="char(36)" defaultValue="${u_id}">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(32)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="fill-system-role-table" author="romanshpakovskiy">
+        <insert tableName="system_role">
+            <column name="id" valueComputed="${u_id}"/>
+            <column name="name" value="ADMIN"/>
+        </insert>
+        <insert tableName="system_role">
+            <column name="id" valueComputed="${u_id}"/>
+            <column name="name" value="USER"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
