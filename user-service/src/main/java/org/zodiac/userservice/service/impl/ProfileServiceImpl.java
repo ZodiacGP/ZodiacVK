@@ -24,12 +24,6 @@ public class ProfileServiceImpl implements ProfileService {
 
 	@Override
 	public Profile save(Profile profile) {
-		if (profile.getId() != null) {
-			Profile fromDb = profileRepository.findById(profile.getId())
-					.orElseThrow(EntityNotFoundException::new);
-			profile.setUser(fromDb.getUser());
-		}
-
 		profile.setStatus(ProfileStatus.ACTIVE);
 
 		List<SystemRoleName> roleNames = profile.getSystemRoles()

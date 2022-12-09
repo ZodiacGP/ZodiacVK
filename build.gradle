@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.0.0'
     id 'io.spring.dependency-management' version '1.1.0'
+    id 'groovy'
 }
 
 subprojects {
@@ -10,10 +11,13 @@ subprojects {
     sourceCompatibility = '17'
 
     apply plugin: 'java'
+    apply plugin: 'groovy'
     apply plugin: 'io.spring.dependency-management'
     apply plugin: 'java-library'
 
     def springBootVersion = '3.0.0'
+    def mapStructVersion = '1.5.3.Final'
+    def spockVersion = '2.3-groovy-4.0'
 
     configurations {
         compileOnly {
@@ -34,10 +38,13 @@ subprojects {
 
         implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
-        implementation "org.mapstruct:mapstruct:1.5.3.Final"
-        annotationProcessor "org.mapstruct:mapstruct-processor:1.5.3.Final"
+        implementation "org.mapstruct:mapstruct:${mapStructVersion}"
+        annotationProcessor "org.mapstruct:mapstruct-processor:${mapStructVersion}"
 
-        //testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testImplementation "org.spockframework:spock-core:${spockVersion}"
+        testImplementation "org.spockframework:spock-spring:${spockVersion}"
+        testImplementation 'org.apache.groovy:groovy:4.0.6'
     }
 
     dependencyManagement {
