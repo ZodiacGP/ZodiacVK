@@ -1,0 +1,11 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="add-unique-constraints-user-table" author="zodiach3">
+        <addUniqueConstraint tableName="user"
+                             columnNames="username"
+                             constraintName="ak_users_username"/>
+    </changeSet>
+</databaseChangeLog>

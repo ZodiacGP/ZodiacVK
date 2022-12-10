@@ -9,4 +9,6 @@
     <include file="migration/V0_0_2__create_system_role_table.xml" relativeToChangelogFile="true"/>
     <include file="migration/V0_0_3__create_profile_table.xml" relativeToChangelogFile="true"/>
     <include file="migration/V0_0_4__create_profile_system_role_table.xml" relativeToChangelogFile="true"/>
+    <include file="migration/V0_0_5__add_unique_constraints_user_table.xml" relativeToChangelogFile="true"/>
+    <include file="migration/V0_0_6__remove_profile_type_column.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
