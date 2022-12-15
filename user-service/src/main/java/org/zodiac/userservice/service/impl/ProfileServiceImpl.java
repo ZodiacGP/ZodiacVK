@@ -9,6 +9,7 @@ import org.zodiac.userservice.entity.ProfileStatus;
 import org.zodiac.userservice.entity.SystemRole;
 import org.zodiac.userservice.entity.SystemRoleName;
 import org.zodiac.userservice.repository.ProfileRepository;
+import org.zodiac.userservice.service.ProfileDetailService;
 import org.zodiac.userservice.service.ProfileService;
 import org.zodiac.userservice.service.SystemRoleService;
 
@@ -21,6 +22,7 @@ import java.util.List;
 public class ProfileServiceImpl implements ProfileService {
 	private final ProfileRepository profileRepository;
 	private final SystemRoleService systemRoleService;
+	private final ProfileDetailService profileDetailService;
 
 	@Override
 	public Profile save(Profile profile) {
@@ -30,6 +32,8 @@ public class ProfileServiceImpl implements ProfileService {
 				.stream()
 				.map(SystemRole::getName)
 				.toList();
+
+		profileDetailService.save(profile.getProfileDetail());
 
 		profile = profileRepository.save(profile);
 

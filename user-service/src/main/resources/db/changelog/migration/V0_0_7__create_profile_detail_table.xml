@@ -1,0 +1,22 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="create-profile-detail-table" author="zodiach3">
+        <createTable tableName="profile_detail">
+            <column name="id" type="char(36)" defaultValue="${u_id}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="first_name" type="varchar(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar(32)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

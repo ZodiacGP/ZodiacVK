@@ -1,10 +1,15 @@
 package org.zodiac.userservice.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.zodiac.userservice.converter.UserConverter;
 import org.zodiac.userservice.dto.UserDto;
 import org.zodiac.userservice.entity.User;
+import org.zodiac.userservice.search.UserSearchParameters;
 import org.zodiac.userservice.service.UserService;
 
 @RestController
@@ -28,5 +33,11 @@ public class UserController {
 		User savedUser = userService.save(user);
 
 		return userConverter.toDto(savedUser);
+	}
+
+	@GetMapping
+	public Page<UserDto> findUsers(@ModelAttribute UserSearchParameters searchParameters, Pageable pageable) {
+		return userService.search(searchParameters.toSpecification(), pageable)
+				.map(userConverter::toDto);
 	}
 }

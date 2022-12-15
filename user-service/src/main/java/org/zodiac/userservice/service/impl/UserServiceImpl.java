@@ -2,6 +2,9 @@ package org.zodiac.userservice.service.impl;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,5 +37,10 @@ public class UserServiceImpl implements UserService {
 		profileService.save(user.getProfile().setUser(savedUser));
 
 		return userRepository.save(savedUser);
+	}
+
+	@Override
+	public Page<User> search(Specification<User> specification, Pageable pageable) {
+		return userRepository.findAll(specification, pageable);
 	}
 }

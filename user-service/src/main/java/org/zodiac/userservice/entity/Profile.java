@@ -11,12 +11,15 @@ import java.util.List;
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-@Inheritance(strategy = InheritanceType.JOINED)
 @Entity
 public class Profile extends BaseEntity {
 	@ManyToOne
 	@JoinColumn(name = "user_id", referencedColumnName = "id")
 	private User user;
+
+	@OneToOne
+	@JoinColumn(name = "profile_detail_id", referencedColumnName = "id")
+	private ProfileDetail profileDetail;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "profile_system_role",
