@@ -4,6 +4,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
     <property name="u_id" value="(SELECT md5(random()::text || clock_timestamp()::text)::uuid)" dbms="postgresql"/>
+    <property name="u_id" value="(random_uuid())" dbms="h2"/>
 
     <include file="migration/V0_0_1__create_user_table.xml" relativeToChangelogFile="true"/>
     <include file="migration/V0_0_2__create_system_role_table.xml" relativeToChangelogFile="true"/>

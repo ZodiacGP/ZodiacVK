@@ -2,11 +2,9 @@ package org.zodiac.userservice.service.impl
 
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
-import org.zodiac.userservice.entity.Profile
-import org.zodiac.userservice.entity.ProfileStatus
-import org.zodiac.userservice.entity.SystemRole
-import org.zodiac.userservice.entity.SystemRoleName
+import org.zodiac.userservice.entity.*
 import org.zodiac.userservice.repository.ProfileRepository
+import org.zodiac.userservice.service.ProfileDetailService
 import org.zodiac.userservice.service.ProfileService
 import org.zodiac.userservice.service.SystemRoleService
 import spock.lang.Subject
@@ -18,25 +16,30 @@ class ProfileServiceImplTest extends UserServiceSpecification {
     @SpringBean
     SystemRoleService systemRoleService = Mock()
 
+    @SpringBean
+    ProfileDetailService profileDetailService = Mock()
+
     @Autowired
     @Subject
     ProfileService profileService
 
     def USER_SYSTEM_ROLE = List.of(new SystemRole().setName(SystemRoleName.USER))
     def userProfile
+    def profileDetail
     def id
 
     def setup() {
+        profileDetail = new ProfileDetail().setFirstName("test").setLastName("test")
         userProfile = new Profile().setSystemRoles(USER_SYSTEM_ROLE)
-        id = UUID.randomUUID().toString()
+        id = getRandomId()
     }
-
 
     def "Should save profile"() {
         given:
-        def profileToSave = new Profile().setSystemRoles(USER_SYSTEM_ROLE)
+        def profileToSave = new Profile().setSystemRoles(USER_SYSTEM_ROLE).setProfileDetail(profileDetail)
 
         systemRoleService.findByNameIn(_ as List<SystemRoleName>) >> USER_SYSTEM_ROLE
+        profileDetailService.save(_ as ProfileDetail) >> profileDetail.setId(getRandomId())
         profileRepository.save(_ as Profile) >> userProfile.setId(id)
 
         when:
@@ -57,5 +60,9 @@ class ProfileServiceImplTest extends UserServiceSpecification {
         then:
         deactivatedProfile.id == id
         deactivatedProfile.status == ProfileStatus.INACTIVE
+    }
+
+    private String getRandomId() {
+        UUID.randomUUID().toString()
     }
 }

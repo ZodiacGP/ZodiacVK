@@ -2,6 +2,8 @@ dependencies {
     implementation 'org.liquibase:liquibase-core'
     runtimeOnly 'org.postgresql:postgresql'
 
+    testRuntimeOnly 'com.h2database:h2'
+
     implementation project(':dependencies:database')
     implementation project(':dependencies:error-handler')
     implementation project(':dependencies:security')
