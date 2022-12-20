@@ -47,6 +47,7 @@ class ProfileServiceImplTest extends UserServiceSpecification {
 
         then:
         savedProfile.id != null
+        savedProfile.id == id
     }
 
     def "Should deactivate profile"() {
@@ -60,9 +61,5 @@ class ProfileServiceImplTest extends UserServiceSpecification {
         then:
         deactivatedProfile.id == id
         deactivatedProfile.status == ProfileStatus.INACTIVE
-    }
-
-    private String getRandomId() {
-        UUID.randomUUID().toString()
     }
 }

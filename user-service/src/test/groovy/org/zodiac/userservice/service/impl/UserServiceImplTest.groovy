@@ -2,7 +2,9 @@ package org.zodiac.userservice.service.impl
 
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.data.domain.PageImpl
+import org.springframework.data.domain.Pageable
+import org.springframework.data.jpa.domain.Specification
 import org.zodiac.userservice.entity.Profile
 import org.zodiac.userservice.entity.SystemRole
 import org.zodiac.userservice.entity.SystemRoleName
@@ -34,7 +36,7 @@ class UserServiceImplTest extends UserServiceSpecification {
     def setup() {
         userProfile = new Profile().setSystemRoles(USER_SYSTEM_ROLE)
         user = new User().setUsername(USERNAME).setPassword(PASSWORD).setProfile(userProfile)
-        id = UUID.randomUUID().toString()
+        id = getRandomId()
     }
 
     def "Should save user"() {
@@ -66,5 +68,21 @@ class UserServiceImplTest extends UserServiceSpecification {
         foundedUser.username == USERNAME
         foundedUser.password == PASSWORD
         foundedUser.profile == userProfile
+    }
+
+    def "Should find users"() {
+        given:
+        Specification<User> specification = Mock()
+        Pageable pageable = Mock()
+
+        userRepository.findAll(_ as Specification, _ as Pageable) >> new PageImpl<User>(List.of(user.setId(id)))
+
+        when:
+        def foundedUsers = userService.search(specification, pageable)
+
+        then:
+        foundedUsers != null
+        !foundedUsers.isEmpty()
+        foundedUsers.size == 1
     }
 }

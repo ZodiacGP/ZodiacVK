@@ -8,4 +8,7 @@ import spock.lang.Specification
 @ContextConfiguration(classes = UserServiceApplication.class)
 @SpringBootTest
 class UserServiceSpecification extends Specification {
+    protected String getRandomId() {
+        UUID.randomUUID().toString()
+    }
 }
