@@ -12,6 +12,7 @@ import org.zodiac.userservice.service.UserService;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin("https://localhost:4200")
 @RequiredArgsConstructor
 public class UserController {
 	private final UserService userService;

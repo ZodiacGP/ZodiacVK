@@ -3,4 +3,4 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: "${JWT_ISSUER_URI:http://localhost:8080/realms/zodiac-vk-realm}"
+          issuer-uri: "${JWT_ISSUER_URI:http://localhost:8443/realms/zodiac-vk-realm}"

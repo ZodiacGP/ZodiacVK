@@ -1,0 +1,5 @@
+{
+    "KEYCLOAK_URL": "http://localhost:8180/auth",
+    "KEYCLOAK_REALM": "zodiac-vk-realm",
+    "KEYCLOAK_CLIENT_ID": "zodiac-vk-client"
+}
