@@ -63,7 +63,10 @@
               "browserTarget": "frontend:build:production"
             },
             "development": {
-              "browserTarget": "frontend:build:development"
+              "browserTarget": "frontend:build:development",
+              "ssl": true,
+              "sslCert": "src/assets/ssl/angular-zodiac-vk.crt",
+              "sslKey": "src/assets/ssl/angular-zodiac-vk.key"
             }
           },
           "defaultConfiguration": "development"
