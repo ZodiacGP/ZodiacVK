@@ -22,6 +22,7 @@ public class KCRoleConverter implements Converter<Jwt, Collection<GrantedAuthori
 		}
 
 		return ((List<String>) realmAccess.get("roles")).stream()
+				.map(String::toUpperCase)
 				.map(SimpleGrantedAuthority::new)
 				.collect(Collectors.toList());
 	}

@@ -1,17 +1,25 @@
-<div class="container">
-  <h1>User:</h1>
+<div>
+  <h1>Users:</h1>
 
   <table>
     <thead>
     <th>Id</th>
     <th>Username</th>
-    <th>Password</th>
+    <th>Profile Id</th>
+    <th>Status</th>
+    <th>Email</th>
+    <th>First name</th>
+    <th>Last name</th>
     </thead>
     <tbody>
     <tr *ngFor="let user of users">
       <td>{{user.id}}</td>
       <td>{{user.username}}</td>
-      <td>{{user.password}}</td>
+      <td>{{user.profile.id}}</td>
+      <td>{{user.profile.status}}</td>
+      <td>{{user.profile.profileDetail.email}}</td>
+      <td>{{user.profile.profileDetail.firstName}}</td>
+      <td>{{user.profile.profileDetail.lastName}}</td>
     </tr>
     </tbody>
   </table>
@@ -19,6 +27,3 @@
   <button (click)="getUsers()">Click</button>
   <button (click)="logout()">Logout</button>
 </div>
-
-
-

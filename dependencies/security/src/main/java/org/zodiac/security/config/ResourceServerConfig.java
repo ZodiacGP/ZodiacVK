@@ -3,6 +3,7 @@ package org.zodiac.security.config;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 import org.springframework.security.config.core.GrantedAuthorityDefaults;
@@ -13,6 +14,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.zodiac.security.converter.KCRoleConverter;
 
 @Configuration
+@EnableMethodSecurity
 public class ResourceServerConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {

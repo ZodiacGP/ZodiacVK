@@ -5,7 +5,15 @@ import {Observable} from 'rxjs';
 export interface User {
   id: string;
   username: string;
-  password: string;
+  profile: {
+    id: string,
+    status: string,
+    profileDetail: {
+      email: string,
+      firstName: string,
+      lastName: string
+    }
+  }
 }
 
 @Injectable({
