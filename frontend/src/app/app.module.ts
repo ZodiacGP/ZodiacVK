@@ -8,6 +8,7 @@ import {AppRoutingModule} from "./app-routing.module";
 import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
 import {initializeKeycloak} from "./init/keycloak-init.factory";
 import {ContentComponent} from "./component/content/content.component";
+import {ConfigInitService} from "./init/config-init.service";
 
 
 @NgModule({
@@ -23,10 +24,11 @@ import {ContentComponent} from "./component/content/content.component";
     AppRoutingModule
   ],
   providers: [
+    ConfigInitService,
     {
       provide: APP_INITIALIZER,
       useFactory: initializeKeycloak,
-      deps: [KeycloakService],
+      deps: [KeycloakService, ConfigInitService],
       multi: true
     }
   ],

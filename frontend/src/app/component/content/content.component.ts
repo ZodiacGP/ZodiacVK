@@ -20,14 +20,14 @@ export class ContentComponent {
   }
 
   getUsers() {
-    this.backend.getUsers().subscribe(
-      response => {
+    this.backend.getUsers().subscribe({
+      next: response => {
         this.users = response
       },
-
-      error => {
+      error: error => {
         console.log(error.error)
-      })
+      }
+    });
   }
 
   onMovieIdChange(event: any) {
@@ -35,13 +35,13 @@ export class ContentComponent {
   }
 
   private getUserById(id: number) {
-    this.backend.getUserById(id).subscribe(
-      response => {
+    this.backend.getUserById(id).subscribe({
+      next: response => {
         this.users = [response]
       },
-
-      error => {
+      error: error => {
         console.log(error.error)
-      })
+      }
+    });
   }
 }
