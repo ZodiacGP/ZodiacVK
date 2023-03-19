@@ -1,8 +1,6 @@
 package org.zodiac.errorhandler;
 
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.ConstraintViolationException;
-import org.postgresql.util.PSQLException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
@@ -16,22 +14,10 @@ import java.util.List;
 
 @RestControllerAdvice
 public class ApplicationExceptionHandler {
-	@ResponseStatus(HttpStatus.NOT_FOUND)
-	@ExceptionHandler
-	public BaseError handleEntityNotFoundException(EntityNotFoundException exception) {
-		return new BaseError(exception.getMessage(), ErrorCategory.ENTITY_NOT_FOUND_ERROR);
-	}
-
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler
 	public BaseError handleIllegalArgumentException(IllegalArgumentException exception) {
 		return new BaseError(exception.getMessage(), ErrorCategory.ILLEGAL_ARGUMENT_ERROR);
-	}
-
-	@ResponseStatus(HttpStatus.BAD_REQUEST)
-	@ExceptionHandler
-	public BaseError handleIllegalArgumentException(PSQLException exception) {
-		return new BaseError(exception.getMessage(), ErrorCategory.CONSTRAINT_VIOLATION_ERROR);
 	}
 
 	@ResponseStatus(HttpStatus.BAD_REQUEST)

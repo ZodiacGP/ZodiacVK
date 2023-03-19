@@ -1,0 +1,6 @@
+dependencies {
+    api project(':dependencies:error-handler')
+    api 'org.postgresql:postgresql'
+    api 'org.springframework.boot:spring-boot-starter-data-jpa'
+    api 'org.hibernate.orm:hibernate-core'
+}

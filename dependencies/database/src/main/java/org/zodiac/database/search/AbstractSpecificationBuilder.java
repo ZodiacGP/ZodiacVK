@@ -1,8 +1,8 @@
-package org.zodiac.common.search;
+package org.zodiac.database.search;
 
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.util.CollectionUtils;
-import org.zodiac.common.constant.CompositeType;
+import org.zodiac.database.constant.CompositeType;
 
 import java.util.ArrayList;
 import java.util.Collection;

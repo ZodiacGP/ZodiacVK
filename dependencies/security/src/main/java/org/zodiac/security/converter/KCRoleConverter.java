@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 public class KCRoleConverter implements Converter<Jwt, Collection<GrantedAuthority>> {
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public Collection<GrantedAuthority> convert(Jwt jwt) {
 		Map<String, Object> realmAccess = (Map<String, Object>) jwt.getClaims().get("realm_access");
 
